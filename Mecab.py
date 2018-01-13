@@ -25,7 +25,7 @@ result = m.parse(contents)
 
 for i in result.split('\n'):
     base_path = "./"
-    insert = base_path + "insert.tex"
+    insert = base_path + "insert.html"
     word = i.split('\t')[0]
 
     if word == 'EOS':
@@ -34,5 +34,5 @@ for i in result.split('\n'):
         output_words.append(word)
 
     f = open(insert,"w")
-    f.write(str(output_words))
+    f.write('<meta http-equiv="content-type" charset="utf-8">' + str(output_words))
     f.close()
