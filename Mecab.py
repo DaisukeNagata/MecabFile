@@ -4,6 +4,8 @@ import sys
 import MeCab
 import urllib.request
 from gensim.models import word2vec
+import logging
+import codecs
 
 if len(sys.argv) == 2:
     url = sys.argv[1]
@@ -26,7 +28,7 @@ result = m.parse(contents)
 for i in result.split('\n'):
     word = i.split('\t')[0]
     base_path = "./"
-    insert = base_path + "insert.html"
+    insert = base_path + "insert.txt"
 
     if word == 'EOS':
         break
@@ -34,15 +36,24 @@ for i in result.split('\n'):
         output_words.append(word)
 
     f = open(insert,"w")
-    f.write('<meta http-equiv="content-type" charset="utf-8">' + str(output_words))
+    f.write(str(output_words))
     f.close()
 
-model = word2vec.Word2Vec(output_words,
-                          size=100,
-                          min_count=5,
-                          window=5,
-                          iter=5)
+with codecs.open('insert.txt', 'r') as f:
+    
+    text = f.read()
+    tagger = MeCab.Tagger('-Owakati')
+    wakati_text = tagger.parse(text)
+    open('insert.txt', 'w').write(wakati_text)
+    
+    sentences = word2vec.Text8Corpus("insert.txt")
+    model = word2vec.Word2Vec(sentences, size=100, min_count=1)
 
-print(model)
 
 model.save("word2vec.gensim.model")
+
+model = word2vec.Word2Vec.load("word2vec.gensim.model")
+results = model.wv.most_similar(positive=['openCV'])
+
+for result in results:
+    print(result)
