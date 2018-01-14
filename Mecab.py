@@ -3,7 +3,6 @@ import bs4
 import sys
 import MeCab
 import urllib.request
-import lxml.html
 
 if len(sys.argv) == 2:
     url = sys.argv[1]
@@ -19,14 +18,14 @@ contents     = title + description + h1
 output_words = []
 
 
-m = MeCab.Tagger('-Ochasen')
+m = MeCab.Tagger()
 result = m.parse(contents)
 
 
 for i in result.split('\n'):
+    word = i.split('\t')
     base_path = "./"
     insert = base_path + "insert.html"
-    word = i.split('\t')[0]
 
     if word == 'EOS':
         break
