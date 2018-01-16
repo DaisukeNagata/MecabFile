@@ -35,3 +35,10 @@ export PATH=$PROJECT_HOME/local/bin:$PATH
 ./configure --prefix=$PROJECT_HOME/local --enable-utf8-only
 
 make && make install
+
+
+////////////EC２へ転送////////////
+scp -i ~/証明書.pem ~/test2.py ec2-user@xxx-xx-xxx-xxx-xx.ap-northeast-1.compute.amazonaws.com:~/
+
+////////////EC２から受信////////////
+scp -i ~/証明書.pem ec2-user@xxx-xx-xxx-xxx-xx.ap-northeast-1.compute.amazonaws.com:ダウンロード対象ファイルパス
