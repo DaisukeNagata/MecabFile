@@ -13,7 +13,7 @@ course_name = form.getvalue('course', '')
 
 import MeCab
 mecab = MeCab.Tagger("-Ochasen")
-print(mecab.parse(course_nam))
+print(mecab.parse(course_name))
 
 
 # HTML
