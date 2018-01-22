@@ -42,3 +42,6 @@ scp -i ~/証明書.pem ~/test2.py ec2-user@xxx-xx-xxx-xxx-xx.ap-northeast-1.comp
 
 ////////////EC２から受信////////////
 scp -i ~/証明書.pem ec2-user@xxx-xx-xxx-xxx-xx.ap-northeast-1.compute.amazonaws.com:ダウンロード対象ファイルパス
+
+////////////権限設定////////////
+chmod *** ファイル名
