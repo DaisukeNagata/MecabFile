@@ -20,12 +20,16 @@ mecab -b 100000 -Owakati wiki.txt -o wiki_wakati.txt
 
 
 ////////////mecabインストール////////////
+### mecabFIleのインストール
 wget -O mecab-0.996.tar.gz "https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE"
 tar zxvf mecab-0.996.tar.gz
 cd mecab-0.996
 ./configure --prefix=$PROJECT_HOME/local --enable-utf8-only
 
-make && make install
+make
+make check
+sudo make install
+### 辞書のインストール
 wget -O mecab-ipadic-2.7.0-20070801.tar.gz "https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM"
 tar zvxf mecab-ipadic-2.7.0-20070801.tar.gz
 
@@ -33,8 +37,9 @@ cd mecab-ipadic-2.7.0-20070801
 export PATH=$PROJECT_HOME/local/bin:$PATH
 
 ./configure --prefix=$PROJECT_HOME/local --enable-utf8-only
-
-make && make install
+make
+make check
+sudo make install
 
 
 ////////////EC２へ転送////////////
