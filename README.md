@@ -3,7 +3,7 @@
 1.Performed in a predetermined directory to use
 
 ```ruby
-chmod 755 fimename.py
+chmod 755 filename.py
 ```
 
 2.Use local server directory to start
