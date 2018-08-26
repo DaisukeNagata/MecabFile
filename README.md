@@ -1,4 +1,4 @@
-# MecabFile
+# MecabFile Python3.5.6
 
 1.Performed in a predetermined directory to use
 
